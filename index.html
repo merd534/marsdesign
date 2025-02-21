@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Товары Марса</title>
+  <style>
+    /* Основные стили */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+      cursor: none; /* Скрываем стандартный курсор */
+    }
+
+    /* Кастомный курсор */
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00ffcc;
+      border-radius: 50%;
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.2s, height 0.2s;
+      z-index: 1000;
+    }
+
+    .custom-cursor.hover {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 255, 204, 0.2);
+    }
+
+    /* Шапка */
+    header {
+      background: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 255, 204, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    }
+
+    /* Главный экран */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      padding: 150px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Блоки с товарами */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 50px 20px;
+      background: #0a0a0a;
+      position: relative;
+      z-index: 10;
+    }
+
+    .product {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .product:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+    }
+
+    .product h3 {
+      font-size: 1.8rem;
+      color: #00ffcc;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    .product p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    /* Кнопки с подсветкой снизу */
+    .product button {
+      background: #00ffcc;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product button::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .product button:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product button:hover {
+      transform: scale(1.05);
+    }
+
+    .product button a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* Подвал */
+    footer {
+      background: #1a1a1a;
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+      box-shadow: 0 -4px 10px rgba(0, 255, 204, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+
+    footer p {
+      margin: 0;
+      color: #ccc;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product {
+        width: 80%;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Кастомный курсор -->
+  <div class="custom-cursor"></div>
+
+  <!-- Шапка -->
+  <header>
+    <h1>𝙈𝙖𝙧𝙨® 𝙎𝙩𝙪𝙙𝙞𝙤</h1>
+  </header>
+
+  <!-- Главный экран -->
+  <section class="hero">
+    <h2>Создаем дизайн для вас</h2>
+    <p>Ниже перечислены товары</p>
+  </section>
+
+  <!-- Блоки с товарами -->
+  <section class="products">
+    <!-- Блок 1: Приват SPACE BOOM -->
+    <div class="product">
+      <h3>Приват SPACR BOOM</h3>
+      <p>Приват с огромным количеством материалов</p>
+      <button><a href="https://t.me/marsikill" target="_blank">Приобрести</a></button>
+    </div>
+
+    <!-- Блок 2: 3D интро -->
+    <div class="product">
+      <h3>3D интро</h3>
+      <p>Захватывающие 3D-заставки для YouTube, Twitch и соцсетей.</p>
+      <button><a href="https://t.me/marsikill" target="_blank">Приобрести</a></button>
+    </div>
+
+    <!-- Блок 3: Ава/Лого/Баннер -->
+    <div class="product">
+      <h3>Ава/Лого/Баннер</h3>
+      <p>Создаем запоминающиеся аватары, логотипы и баннеры.</p>
+      <button><a href="https://t.me/marsikill" target="_blank">Приобрести</a></button>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer>
+    <p>Mars® studio</p>
+  </footer>
+
+  <!-- Скрипт для кастомного курсора -->
+  <script>
+    const cursor = document.querySelector('.custom-cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = `${e.pageX}px`;
+      cursor.style.top = `${e.pageY}px`;
+    });
+
+    document.querySelectorAll('button, a').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+      });
+      element.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+      });
+    });
+  </script>
+
+</body>
+</html>
